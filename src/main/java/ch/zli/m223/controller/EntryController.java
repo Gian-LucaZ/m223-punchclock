@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -14,6 +17,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import ch.zli.m223.model.Entry;
+import ch.zli.m223.exceptions.EntryNotFoundException;
 import ch.zli.m223.service.EntryService;
 
 @Path("/entries")
@@ -38,4 +42,16 @@ public class EntryController {
        return entryService.createEntry(entry);
     }
 
+    @DELETE @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Entry delete(@PathParam("id") Long id) throws Exception{
+        return entryService.deleteEntry(id);
+    }
+
+    @PUT @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Entry update(@PathParam("id") Long id, Entry entry) throws EntryNotFoundException{
+        return entryService.alterEntry(id, entry);
+    }
 }
