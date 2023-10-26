@@ -25,6 +25,7 @@ public class Entry {
   private LocalDateTime checkOut;
 
   @ManyToOne(optional = false)
+  @JsonIgnoreProperties("entries")
   @Fetch(FetchMode.JOIN)
   private Category category;
 
@@ -59,5 +60,13 @@ public class Entry {
 
   public void setCheckOut(LocalDateTime checkOut) {
     this.checkOut = checkOut;
+  }
+
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
   }
 }

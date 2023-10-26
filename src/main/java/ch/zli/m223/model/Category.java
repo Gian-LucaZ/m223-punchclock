@@ -24,6 +24,14 @@ public class Category {
     @Fetch(FetchMode.JOIN)
     private List<Entry> entries;
 
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
+    }
+
     public Long getId() {
         return id;
     }

@@ -18,6 +18,14 @@ public class Tag {
     @ManyToMany(mappedBy = "tags")
     private List<Entry> taggedEntries;
 
+    public List<Entry> getTaggedEntries() {
+        return taggedEntries;
+    }
+
+    public void setTaggedEntries(List<Entry> taggedEntries) {
+        this.taggedEntries = taggedEntries;
+    }
+
     public Long getId() {
         return id;
     }
