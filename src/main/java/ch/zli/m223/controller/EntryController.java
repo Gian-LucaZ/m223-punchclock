@@ -17,7 +17,6 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import ch.zli.m223.model.Entry;
-import ch.zli.m223.exceptions.EntryNotFoundException;
 import ch.zli.m223.service.EntryService;
 
 @Path("/entries")
@@ -51,7 +50,7 @@ public class EntryController {
     @PUT @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Entry update(@PathParam("id") Long id, Entry entry) throws EntryNotFoundException{
+    public Entry update(@PathParam("id") Long id, Entry entry){
         return entryService.alterEntry(id, entry);
     }
 }
