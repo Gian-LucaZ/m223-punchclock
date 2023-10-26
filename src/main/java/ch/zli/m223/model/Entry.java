@@ -29,6 +29,11 @@ public class Entry {
   @Fetch(FetchMode.JOIN)
   private Category category;
 
+  @ManyToOne(optional = false)
+  @JsonIgnoreProperties("entries")
+  @Fetch(FetchMode.JOIN)
+  private ApplicationUser user;
+
   @ManyToMany
   @JoinTable(
   name = "entry_tags", 
@@ -37,6 +42,14 @@ public class Entry {
   @JsonIgnoreProperties("taggedEntries")
   @Fetch(FetchMode.JOIN)
   private List<Tag> tags;
+
+   public ApplicationUser getUser() {
+    return user;
+  }
+
+  public void setUser(ApplicationUser user) {
+    this.user = user;
+  }
 
   public Long getId() {
     return id;
