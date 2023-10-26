@@ -6,6 +6,8 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,6 +33,8 @@ public class Entry {
   name = "entry_tags", 
   joinColumns = @JoinColumn(name = "entry_id"), 
   inverseJoinColumns = @JoinColumn(name = "tag_id"))
+  @JsonIgnoreProperties("taggedEntries")
+  @Fetch(FetchMode.JOIN)
   private List<Tag> tags;
 
   public Long getId() {
